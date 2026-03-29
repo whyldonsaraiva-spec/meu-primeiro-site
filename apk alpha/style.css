@@ -1,0 +1,201 @@
+/* Estilo para um site de Checklist Moderno e Confortável */
+
+:root {
+    --bg-color: #f0f2f5;
+    --card-bg: #ffffff;
+    --primary-color: #4a90e2; /* Azul confortável */
+    --accent-color: #2ecc71; /* Verde suave para tarefas feitas */
+    --text-color: #2c3e50;
+    --text-muted: #7f8c8d;
+    --border-radius: 12px;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    color: var(--text-muted);
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr; /* Dividir entre lista e gráfico */
+    gap: 20px;
+}
+
+/* Design dos cartões (Cards) */
+.card {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.card:hover {
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+/* Campo de entrada */
+.input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#taskInput {
+    flex: 1;
+    padding: 12px 15px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+#taskInput:focus {
+    border-color: var(--primary-color);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #357abd;
+}
+
+/* Estilo da Lista */
+#taskList {
+    list-style: none;
+    margin-top: 10px;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    background-color: #f8f9fa;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color);
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.task-item:hover {
+    background-color: #f1f3f5;
+}
+
+.task-item.completed {
+    border-left-color: var(--accent-color);
+    opacity: 0.7;
+}
+
+.task-item.completed span {
+    text-decoration: line-through;
+    color: var(--text-muted);
+}
+
+.task-item input[type="checkbox"] {
+    margin-right: 15px;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: var(--accent-color);
+}
+
+.task-item span {
+    flex: 1;
+    font-weight: 400;
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    color: #e74c3c;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 5px;
+    opacity: 0.6;
+    transition: opacity 0.3s;
+}
+
+.delete-btn:hover {
+    opacity: 1;
+}
+
+/* Seção do Gráfico */
+.stats-section h2 {
+    margin-bottom: 1rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.chart-container {
+    position: relative;
+    height: 250px;
+}
+
+#statsSummary {
+    margin-top: 20px;
+    text-align: center;
+    font-weight: 600;
+}
+
+#statsSummary span {
+    color: var(--primary-color);
+}
+
+/* Tornar responsivo para telas menores */
+@media (max-width: 768px) {
+    main {
+        grid-template-columns: 1fr;
+    }
+    
+    body {
+        padding: 10px;
+    }
+}

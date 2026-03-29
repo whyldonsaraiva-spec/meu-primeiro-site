@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Check-List com Gráfico - Antigravity</title>
+    <meta name="description" content="Um site de check-list simples, confortável e com acompanhamento visual de progresso.">
+    <link rel="stylesheet" href="style.css">
+    <!-- Fonte Google: Outfit para um visual moderno e limpo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Chart.js para o gráfico de progresso -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Minha Lista de Tarefas 📝</h1>
+            <p>Acompanhe o seu progresso de um jeito simples e bonito.</p>
+        </header>
+
+        <main>
+            <!-- Lado Esquerdo: A Lista -->
+            <section class="checklist-section card">
+                <div class="input-group">
+                    <input type="text" id="taskInput" placeholder="O que você precisa fazer hoje?" aria-label="Nova tarefa">
+                    <button id="addTaskBtn" class="btn-primary">Adicionar</button>
+                </div>
+                
+                <ul id="taskList">
+                    <!-- As tarefas aparecerão aqui -->
+                </ul>
+            </section>
+
+            <!-- Lado Direito: O Gráfico -->
+            <section class="stats-section card">
+                <h2>Seu Progresso 📊</h2>
+                <div class="chart-container">
+                    <canvas id="progressChart"></canvas>
+                </div>
+                <div id="statsSummary">
+                    <p>Total: <span id="totalTasks">0</span></p>
+                    <p>Feitas: <span id="completedTasks">0</span></p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
