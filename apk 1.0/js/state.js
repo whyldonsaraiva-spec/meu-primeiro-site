@@ -1,18 +1,21 @@
 // State Management
 const AppState = {
+    // Carregamento inicial com sanitização de tipos
     tasks: JSON.parse(localStorage.getItem('tasks')) || [],
     folders: JSON.parse(localStorage.getItem('folders')) || [{ id: 1, name: 'Geral' }],
     notes: JSON.parse(localStorage.getItem('notes')) || [],
     shortcuts: JSON.parse(localStorage.getItem('shortcuts')) || [],
     habits: JSON.parse(localStorage.getItem('habits')) || [],
     
+    // Configurações (Strings diretas)
     currentTheme: localStorage.getItem('theme') || 'system',
     currentLayout: localStorage.getItem('layout') || 'default',
     customQuote: localStorage.getItem('customQuote') || '"Ação é a chave fundamental para todo sucesso."',
     
-    emojisEnabled: JSON.parse(localStorage.getItem('emojisEnabled')) ?? true,
-    gamificationEnabled: JSON.parse(localStorage.getItem('gamificationEnabled')) ?? true,
-    gridsEnabled: JSON.parse(localStorage.getItem('gridsEnabled')) ?? true,
+    // Flags (Booleanos)
+    emojisEnabled: localStorage.getItem('emojisEnabled') !== null ? JSON.parse(localStorage.getItem('emojisEnabled')) : true,
+    gamificationEnabled: localStorage.getItem('gamificationEnabled') !== null ? JSON.parse(localStorage.getItem('gamificationEnabled')) : true,
+    gridsEnabled: localStorage.getItem('gridsEnabled') !== null ? JSON.parse(localStorage.getItem('gridsEnabled')) : true,
     
     userXP: parseInt(localStorage.getItem('userXP')) || 0,
     userPIN: localStorage.getItem('userPIN'),
@@ -20,16 +23,21 @@ const AppState = {
     currentFolderId: 1,
     currentNoteId: null,
 
-    // Methods
+    // Sincronização inteligente
     sync(key) {
-        if(this.hasOwnProperty(key)) {
-            localStorage.setItem(key, JSON.stringify(this[key]));
+        // Mapeamento de chaves de estado para chaves de LocalStorage (compatibilidade legado)
+        const keyMap = {
+            'currentTheme': 'theme',
+            'currentLayout': 'layout'
+        };
+        
+        const storageKey = keyMap[key] || key;
+        const value = this[key];
+
+        if (typeof value === 'string' && key !== 'tasks' && key !== 'folders' && key !== 'notes' && key !== 'shortcuts' && key !== 'habits') {
+            localStorage.setItem(storageKey, value);
         } else {
-            localStorage.setItem('tasks', JSON.stringify(this.tasks));
-            localStorage.setItem('folders', JSON.stringify(this.folders));
-            localStorage.setItem('notes', JSON.stringify(this.notes));
-            localStorage.setItem('shortcuts', JSON.stringify(this.shortcuts));
-            localStorage.setItem('habits', JSON.stringify(this.habits));
+            localStorage.setItem(storageKey, JSON.stringify(value));
         }
     },
     
@@ -41,5 +49,4 @@ const AppState = {
     }
 };
 
-// Auto sync polyfill
 AppState.currentFolderId = AppState.folders[0]?.id || 1;
