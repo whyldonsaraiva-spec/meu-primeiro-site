@@ -878,24 +878,22 @@ header p {
 }
 
 [data-layout="classic"] {
-    --border-radius: 0;
-}
-
-[data-layout="classic"] body {
-    background-color: #e0e0e0;
+    --border-radius: 0px;
 }
 
 [data-layout="classic"] .card {
     border-radius: 0;
-    border: 3px double var(--border-color);
-    box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.1);
-    background: #fdfdfd;
+    border: 2px solid var(--primary-color);
+    box-shadow: 4px 4px 0px var(--border-color);
+    background: var(--card-bg);
+    color: var(--text-color);
 }
 
 [data-layout="classic"] .task-item {
     border-radius: 0;
     border: 1px solid var(--border-color);
-    border-left: 10px solid var(--primary-color);
+    border-left: 8px solid var(--primary-color);
+    background: var(--card-bg);
 }
 
 [data-layout="classic"] .btn-primary,
@@ -1009,4 +1007,22 @@ body.zen-mode .btn-primary {
     100% {
         background-position: 0% 50%;
     }
+}
+
+/* Estilização para Listas no Bloco de Notas */
+#noteText ul {
+    list-style-type: disc !important;
+    padding-left: 25px !important;
+    margin: 8px 0 !important;
+}
+
+#noteText ol {
+    list-style-type: decimal !important;
+    padding-left: 25px !important;
+    margin: 8px 0 !important;
+}
+
+#noteText li {
+    display: list-item !important;
+    margin-bottom: 4px !important;
 }
